@@ -1,0 +1,325 @@
+/* ==========================================================================
+   Ultra Hotel — reset, typography, layout primitives
+   ========================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* The tap flash fights the custom :focus-visible rings and reads as a glitch
+   on gold surfaces, so the whole hit area is handled by CSS instead. */
+a,
+button,
+summary,
+label,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: var(--bg);
+  background: var(--gold-400);
+}
+
+/* Jumping to an in-page anchor should say so. Anchors mostly come from the
+   mega-menu, which navigates rather than jumps, so this stays subtle. */
+:target {
+  scroll-margin-top: calc(var(--nav-h) + 1.5rem);
+}
+
+body {
+  min-height: 100%;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body.is-locked { overflow: hidden; }
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img { height: auto; }
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button { background: none; border: 0; padding: 0; }
+
+ul[class],
+ol[class] { list-style: none; padding: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* --- headings ---------------------------------------------------------- */
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--step-6); }
+h2 { font-size: var(--step-5); }
+h3 { font-size: var(--step-3); }
+h4 { font-size: var(--step-2); }
+h5 { font-size: var(--step-1); }
+
+/* Optical tracking. Display serif needs to be set tighter the larger it gets,
+   otherwise big headlines drift apart and the word shapes look loose; small
+   text set too tight closes up its counters. Stepped off the element's own
+   font-size so it scales with the type ramp instead of the viewport. */
+h1 { letter-spacing: -0.022em; }
+h2 { letter-spacing: -0.016em; }
+h3 { letter-spacing: -0.009em; }
+h4, h5 { letter-spacing: -0.004em; }
+
+p { text-wrap: pretty; }
+
+/* --- eyebrow / kicker -------------------------------------------------- */
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--gold-600);
+}
+
+.eyebrow--on-dark { color: var(--gold-300); }
+
+.eyebrow-rule {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+}
+
+.eyebrow-rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.32;
+}
+
+/* --- lead -------------------------------------------------------------- */
+
+.lead {
+  font-size: var(--step-1);
+  line-height: 1.6;
+  color: var(--text-soft);
+  max-width: 58ch;
+}
+
+.lead--on-dark { color: var(--text-invert-soft); }
+
+.prose { max-width: var(--measure); }
+.prose > * + * { margin-top: var(--sp-4); }
+.prose p { color: var(--text-soft); }
+
+.muted { color: var(--text-mute); }
+.on-dark .muted,
+.is-dark .muted { color: var(--text-invert-mute); }
+
+/* --- layout primitives ------------------------------------------------- */
+
+.shell {
+  width: min(100% - (var(--gutter) * 2), var(--shell));
+  margin-inline: auto;
+}
+
+.shell--wide { width: min(100% - (var(--gutter) * 2), var(--shell-wide)); }
+.shell--narrow { width: min(100% - (var(--gutter) * 2), 880px); }
+
+.section { padding-block: var(--section-y); position: relative; }
+.section--tight { padding-block: calc(var(--section-y) * 0.62); }
+.section--ivory { background: var(--bg-soft); }
+.section--cool { background: var(--bg-cool); }
+.section--dark { background: var(--bg-dark); color: var(--text-invert); }
+.section--darker { background: var(--bg-darker); color: var(--text-invert); }
+
+.section--dark h1, .section--dark h2, .section--dark h3, .section--dark h4,
+.section--darker h1, .section--darker h2, .section--darker h3, .section--darker h4 {
+  color: var(--text-invert);
+}
+
+.section-head { max-width: 62ch; }
+.section-head--center { margin-inline: auto; text-align: center; }
+.section-head > .eyebrow + h2 { margin-top: var(--sp-3); }
+.section-head > h2 + p { margin-top: var(--sp-4); }
+.section-head--center > p { margin-inline: auto; }
+
+.stack > * + * { margin-top: var(--sp-4); }
+.cluster { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+.grid { display: grid; gap: var(--sp-5); }
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+
+.flow-tight > * + * { margin-top: var(--sp-2); }
+
+/* --- text helpers ------------------------------------------------------ */
+
+.text-center { text-align: center; }
+.measure { max-width: 62ch; }
+.serif { font-family: var(--font-display); }
+.nowrap { white-space: nowrap; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: 200;
+  padding: 0.75rem 1.5rem;
+  background: var(--charcoal);
+  color: var(--white);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.skip-link:focus { transform: translate(-50%, 0); }
+
+/* ==========================================================================
+   Media — fixed-ratio boxes with a blur-up placeholder.
+   Every image is wrapped so the box reserves space before bytes land:
+   no layout shift, ever, regardless of the real photo's dimensions.
+   ========================================================================== */
+
+.media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--ivory-100);
+  isolation: isolate;
+}
+
+.media > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity var(--dur-slow) ease, transform var(--dur-slow) var(--ease-out);
+}
+
+.media > img.is-loaded { opacity: 1; }
+
+/* tiny blurred thumbnail shown until the full image decodes */
+.media__ph {
+  position: absolute;
+  inset: -6%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(14px) saturate(1.05);
+  transform: scale(1.06);
+  transition: opacity var(--dur-slow) ease;
+}
+
+.media__ph.is-hidden { opacity: 0; }
+
+.media--16x9  { aspect-ratio: 16 / 9; }
+.media--3x2   { aspect-ratio: 3 / 2; }
+.media--4x3   { aspect-ratio: 4 / 3; }
+.media--1x1   { aspect-ratio: 1 / 1; }
+.media--4x5   { aspect-ratio: 4 / 5; }
+.media--3x4   { aspect-ratio: 3 / 4; }
+.media--21x9  { aspect-ratio: 21 / 9; }
+.media--5x4   { aspect-ratio: 5 / 4; }
+
+/* A media box is sometimes the control itself — the gallery tiles are
+   <button>s so the whole photo is clickable and reachable by keyboard. Strip
+   the UA button chrome so the box keeps its exact layout and stays flush. */
+button.media {
+  display: block;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* ==========================================================================
+   Scroll reveal — fade and rise, staggered by index.
+   Hidden only while JS is present, so no-JS visitors always see content.
+   ========================================================================== */
+
+.js .reveal {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .media > img,
+  .media__ph { transition: none; }
+}

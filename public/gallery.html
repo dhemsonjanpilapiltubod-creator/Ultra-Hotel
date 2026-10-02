@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — Ultra Hotel</title>
+<meta name="description" content="Rooms, dining, lobbies, pools, spas and reefs from across the Ultra Hotel collection. Filter by category and open any image full screen.">
+<meta name="theme-color" content="#1A1A1A">
+<link rel="canonical" href="https://www.ultrahotel.com/gallery.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+<link rel="stylesheet" href="/assets/css/motion.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+</head>
+
+<body data-page="gallery" data-bookingbar="false" data-nav="solid">
+
+<div data-nav-mount></div>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="shell shell--wide">
+      <p class="eyebrow">Gallery</p>
+      <h1 class="pagehead__title" data-split>The collection, in pictures</h1>
+      <p class="lead">Rooms, tables, lobbies, pools, spas and reefs from across the group.
+        Filter by what you are actually deciding about, then open anything full screen.</p>
+    </div>
+  </section>
+
+  <section class="section" id="gallery-grid-section">
+    <div class="shell shell--wide">
+      <form class="searchpanel" data-gallery-search novalidate style="margin-bottom:var(--sp-6)">
+        <div class="searchpanel__grid" style="grid-template-columns:2fr 1fr">
+          <div class="field">
+            <label class="field__label" for="gl-q">Search captions</label>
+            <input class="input" id="gl-q" name="q" type="search" placeholder="beach, lobby, reef…" data-gl-q>
+          </div>
+          <div class="field">
+            <label class="field__label" for="gl-sort">Sort</label>
+            <select class="select" id="gl-sort" data-gl-sort>
+              <option value="curated">Curated</option>
+              <option value="az">Title, A to Z</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset class="chipset" data-gl-cats>
+          <legend class="sr-only">Filter by category</legend>
+        </fieldset>
+
+        <p class="results__count" style="margin-top:var(--sp-4)" data-gl-count role="status"></p>
+      </form>
+
+      <div class="masonry" id="gallery-grid" data-gallery-grid></div>
+
+      <p class="empty" data-gl-empty hidden>
+        No pictures under that filter yet. <button class="link link--btn" type="button" data-gl-reset>Show everything</button>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--sand" aria-labelledby="gallery-cta">
+    <div class="shell">
+      <div class="prose-block" style="margin-inline:auto;text-align:center">
+        <span class="eyebrow">Pressure off</span>
+        <h2 id="gallery-cta" data-split>Pictures are a start, not a decision</h2>
+        <p class="lead" style="margin-top:var(--sp-4)">Ask for a virtual walkthrough of any
+          room or suite before you book. We will film it, unedited, on the day you ask, and
+          send it the same afternoon.</p>
+        <p class="ctaband__actions" style="justify-content:center">
+          <a class="btn btn--gold btn--lg" data-magnetic href="book.html">Find a room</a>
+          <a class="btn btn--outline btn--lg" href="business.html">Ask for a tour</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-footer-mount></div>
+<div data-chat-mount></div>
+
+<script type="module" src="/assets/js/app.js"></script>
+</body>
+</html>

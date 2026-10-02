@@ -1,0 +1,376 @@
+/* ==========================================================================
+   Ultra Hotel — motion & aliveness
+
+   The last layer, loaded after pages.css. Nothing here changes a layout or
+   a colour: it only adds the movement, depth and feedback the palette was
+   already built for.
+
+   Three rules hold everywhere in this file:
+     1. Every effect is additive. With JS off, or the stylesheet blocked, the
+        page is exactly what it was — no missing content, no hidden copy.
+     2. Every effect collapses under prefers-reduced-motion: reduce, and the
+        site is a clean static luxury layout rather than a broken one.
+     3. Magnitudes are small. This is a hotel, not a toy: things drift, they
+        do not bounce.
+
+   Contents
+     1. Motion tokens
+     2. Scroll progress
+     3. Paper grain
+     4. Hero choreography
+     5. Word-mask heading reveal
+     6. Eyebrow rule draw
+     7. Magnetic buttons
+     8. Tilt & sheen on cards
+     9. Button sheen sweep
+    10. Scrollspy
+    11. Back to top
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Motion tokens
+
+   New durations and easings only — the palette is untouched. The hero needs
+   a longer, softer curve than a hover does, so the two are kept apart.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --dur-glide: 1100ms;
+  --dur-drift: 1600ms;
+
+  --ease-glide: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-drift: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-magnetic: cubic-bezier(0.2, 0.9, 0.25, 1);
+
+  /* how far a word rises out of its mask, and the tilt ceilings */
+  --rise: 1.05em;
+  --tilt-max: 5deg;
+  --tilt-lift: 1.4rem;
+  --magnetic-pull: 0.28;
+
+  --grain-opacity: 0.028;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-glide: 1ms;
+    --dur-drift: 1ms;
+    --tilt-max: 0deg;
+    --tilt-lift: 0rem;
+    --magnetic-pull: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Scroll progress
+
+   A hairline that fills as the page is read. It sits above the nav (90) and
+   below the drawer (95) and lightbox (120), so an open panel still wins.
+   -------------------------------------------------------------------------- */
+
+.progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 91;
+  height: 2px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.progress__bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, var(--gold-600), var(--gold-300), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* the bar still tracks the page, it just appears without easing */
+  .progress__bar { transition: transform 1ms linear; }
+}
+
+/* --------------------------------------------------------------------------
+   3. Paper grain
+
+   A very faint noise over the whole viewport. The palette is warm and flat in
+   the large light areas; this is what stops them reading as empty. Fixed and
+   inert, so it costs one composited layer and nothing per frame.
+   -------------------------------------------------------------------------- */
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}
+
+/* The grain is a texture for the page itself, so it steps aside whenever a
+   panel has taken the screen. lockScroll() sets .is-locked for both the
+   drawer and the lightbox, so one rule covers every case. */
+body.is-locked .grain { opacity: 0; }
+
+@media print {
+  .grain, .progress, .totop { display: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero choreography
+
+   ui.js#initMisc already fades [data-hero-anim] in on load, but nothing ever
+   gave those nodes a starting offset, so the transition had nothing to run
+   from and the copy simply appeared. The hidden start state belongs here,
+   behind .js, so a no-JS visitor still sees the headline.
+   -------------------------------------------------------------------------- */
+
+.js [data-hero-anim] {
+  opacity: 0;
+  transform: translate3d(0, 1.4rem, 0);
+}
+
+.js [data-hero-anim].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-hero-anim] { opacity: 1; transform: none; }
+}
+
+/* The hero image gets a slower, deeper zoom than the Ken Burns it already
+   runs, so the two read as one continuous move rather than two fighting. */
+.hero__media { transform: scale(1.04); will-change: transform; }
+
+/* --------------------------------------------------------------------------
+   5. Word-mask heading reveal
+
+   motion.js wraps the words of [data-split] headings. Each word is a window
+   with the real glyphs inside it, and the glyphs rise out. The text is never
+   removed — the heading is fully readable to a screen reader and to search
+   with the effect off.
+   -------------------------------------------------------------------------- */
+
+.split { display: block; }
+
+.split__word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* room for descenders, then take the space back so the line box is unchanged */
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.split__inner {
+  display: inline-block;
+  transform: translate3d(0, var(--rise), 0);
+  transition: transform var(--dur-glide) var(--ease-glide);
+  transition-delay: var(--word-delay, 0ms);
+  will-change: transform;
+}
+
+.is-in .split__inner,
+.split.is-in .split__inner { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .split__inner { transform: none !important; transition: none !important; }
+}
+
+/* The hero headline reveals on load rather than on scroll. */
+.hero .split__inner { transition-duration: var(--dur-drift); }
+
+/* --------------------------------------------------------------------------
+   6. Eyebrow rule draw
+
+   .eyebrow-rule's rule is a flex-grow pseudo-element; animate its width
+   instead of its transform so it grows out from the label, not the centre.
+   -------------------------------------------------------------------------- */
+
+.js .eyebrow-rule::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-glide) var(--ease-glide) 120ms;
+}
+
+.js .eyebrow-rule.is-in::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .eyebrow-rule::after { transform: none !important; transition: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   7. Magnetic buttons
+
+   The primary call to action drifts a few pixels toward the pointer. Applied
+   to a small set of elements via [data-magnetic] so it never turns the whole
+   page into a toy. Pointer-fine only: a touch device has no hover position
+   to follow, and reduced motion sets the pull to zero.
+   -------------------------------------------------------------------------- */
+
+[data-magnetic] {
+  --mx: 0px;
+  --my: 0px;
+  transform: translate3d(var(--mx), var(--my), 0);
+  transition: transform var(--dur) var(--ease-magnetic);
+}
+
+/* the magnetic offset replaces the button's own hover lift, so the lift is
+   folded back in here rather than lost */
+[data-magnetic]:hover,
+[data-magnetic]:focus-visible {
+  transform: translate3d(var(--mx), calc(var(--my) - 2px), 0);
+}
+
+[data-magnetic].is-magnetised {
+  transition: transform 90ms linear, background var(--dur) ease,
+              color var(--dur) ease, border-color var(--dur) ease,
+              box-shadow var(--dur) var(--ease-out);
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  [data-magnetic] { --mx: 0px !important; --my: 0px !important; }
+}
+
+/* --------------------------------------------------------------------------
+   8. Tilt & sheen on cards
+
+   A card leans a few degrees toward the pointer and catches a soft gold
+   highlight. The tilt is written to two custom properties by motion.js and
+   consumed here, so the transform stays in one place.
+   -------------------------------------------------------------------------- */
+
+.tilt {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --sheen-x: 50%;
+  --sheen-y: 50%;
+  --sheen-op: 0;
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
+             translate3d(0, calc(var(--tilt-lift) * var(--lift, 0)), 0);
+  transition: transform var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out),
+              border-color var(--dur) ease;
+}
+
+.tilt.is-tilting { transition: transform 120ms linear, box-shadow var(--dur) var(--ease-out); }
+
+/* The sheen lives inside the card's own .media box rather than over the whole
+   card. .media already clips and stacks, so the highlight lands on the
+   photograph and never washes across the title, the price or any other text. */
+.tilt__sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--sheen-op);
+  background: radial-gradient(
+    22rem circle at var(--sheen-x) var(--sheen-y),
+    color-mix(in srgb, var(--gold-300) 30%, transparent),
+    transparent 60%
+  );
+  transition: opacity var(--dur) ease;
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .tilt { transform: none !important; }
+  .tilt__sheen { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   9. Button sheen sweep
+
+   A single pass of light across a primary button on hover. The sweep is a
+   pseudo-element, so a button that already uses ::after for something else
+   opts in with .btn--sheen rather than silently changing.
+   -------------------------------------------------------------------------- */
+
+.btn--sheen { overflow: hidden; isolation: isolate; }
+
+.btn--sheen::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -60%;
+  width: 55%;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    color-mix(in srgb, var(--white) 42%, transparent),
+    transparent
+  );
+  transform: translateX(-140%) skewX(-14deg);
+  transition: transform var(--dur-glide) var(--ease-glide);
+}
+
+.btn--sheen:hover::after,
+.btn--sheen:focus-visible::after { transform: translateX(320%) skewX(-14deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--sheen::after { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   10. Scrollspy
+
+   The nav item for the section you are reading lifts and gains its rule, so
+   the header always says where you are. Driven by motion.js, which sets
+   .is-current on the matching nav link.
+   -------------------------------------------------------------------------- */
+
+.nav__item.is-current > .nav__split .nav__link,
+.nav__item.is-current > .nav__link {
+  color: var(--gold-600);
+}
+
+.nav:not(.is-solid):not(.is-open) .nav__item.is-current > .nav__split .nav__link,
+.nav:not(.is-solid):not(.is-open) .nav__item.is-current > .nav__link {
+  color: var(--white);
+}
+
+/* --------------------------------------------------------------------------
+   11. Back to top
+
+   Bottom-left, so it never collides with the chat launcher in the corner.
+   -------------------------------------------------------------------------- */
+
+.totop {
+  position: fixed;
+  left: clamp(1rem, 2.5vw, 1.75rem);
+  bottom: clamp(1rem, 2.5vw, 1.75rem);
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  color: var(--charcoal);
+  background: color-mix(in srgb, var(--white) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity var(--dur) ease, visibility var(--dur) ease,
+              transform var(--dur) var(--ease-out),
+              background var(--dur) ease, border-color var(--dur) ease,
+              color var(--dur) ease;
+}
+
+.totop.is-shown { opacity: 1; visibility: visible; transform: none; }
+.totop:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+.totop svg { width: 15px; height: 15px; }
+
+@media (max-width: 640px) {
+  /* the home booking bar owns the bottom of a phone screen */
+  .totop { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .totop { transform: none; }
+}

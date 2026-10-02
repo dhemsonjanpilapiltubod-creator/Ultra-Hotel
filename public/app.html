@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ultra App — Ultra Hotel</title>
+<meta name="description" content="Book any Ultra stay, check in from your phone, pay with points or cash, and unlock offers that only exist in the app. Free on iOS and Android.">
+<meta name="theme-color" content="#1A1A1A">
+<link rel="canonical" href="https://www.ultrahotel.com/app.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+<link rel="stylesheet" href="/assets/css/motion.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+</head>
+
+<body data-page="app" data-bookingbar="true" data-nav="solid">
+
+<div data-nav-mount></div>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="shell shell--wide">
+      <p class="eyebrow">The Ultra App</p>
+      <h1 class="pagehead__title" data-split>The hotel, in your pocket, before you arrive</h1>
+      <p class="lead">Every property, every room, and every table in the group, with direct
+        rates applied automatically. Check in at the gate, pay with points or cash or both,
+        and get at the offers that exist nowhere else.</p>
+      <p style="margin-top:var(--sp-6)" data-app-download-actions></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="app-features">
+    <div class="shell shell--wide">
+      <h2 id="app-features" class="sr-only">What the app does</h2>
+      <ul class="benefits" data-app-features data-reveal-stagger></ul>
+    </div>
+  </section>
+
+  <section class="section section--sand" id="checkin" aria-labelledby="app-checkin">
+    <div class="shell shell--wide">
+      <div class="split split--wide">
+        <div class="reveal">
+          <span class="eyebrow">Mobile check-in</span>
+          <h2 id="app-checkin" data-split>Check in at the gate, not the desk</h2>
+          <div class="prose" style="margin-top:var(--sp-5)">
+            <p>Your room key appears in the app 24 hours before arrival. At the gate, hold your
+              phone to the reader, the door opens, and that is the whole interaction.</p>
+            <p>Express checkout closes the folio the night before, so departure is a receipt in
+              your inbox rather than a queue at 11am on a Sunday. If anything on the bill is
+              wrong you can dispute it from the app while you are still in the lift.</p>
+          </div>
+          <ol class="steps" style="margin-top:var(--sp-6)">
+            <li>
+              <b>24 hours before arrival</b>
+              <p>Digital key is issued, check-in opens, and the folio is already itemised.</p>
+            </li>
+            <li>
+              <b>At the gate</b>
+              <p>Phone to reader, door opens, no queue, no printed key card.</p>
+            </li>
+            <li>
+              <b>The night before departure</b>
+              <p>Express checkout. Review, dispute if needed, settle in the app.</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="app-panel reveal">
+          <div class="app-panel__phone" data-app-phone></div>
+          <ul class="app-panel__list" data-app-shot-list></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pay" aria-labelledby="app-pay">
+    <div class="shell shell--wide">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">Pay your way</span>
+          <h2 id="app-pay" data-split>Cash, card, or points — mixed freely</h2>
+          <div class="prose" style="margin-top:var(--sp-5)">
+            <p>Points for the room, cash for the dinner, the rest on the card you already
+              have. The app splits a single stay across payment methods however you like, and
+              shows the split before you commit — no calling a hotel to arrange it.</p>
+            <p>Paying with points never costs more than the cash rate. A 25,000-point night is
+              a 25,000-point night, and the rate parity guarantee applies to it too.</p>
+          </div>
+          <ul class="ticks" style="margin-top:var(--sp-5)">
+            <li>25,000 points for a free night at any Ultra property</li>
+            <li>5,000 points for a dining credit at any restaurant in the group</li>
+            <li>40,000 points for a confirmed suite upgrade</li>
+            <li>Points never expire while your membership is active</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="pay-split" data-app-pay-split></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="deals" aria-labelledby="app-deals">
+    <div class="shell shell--wide">
+      <div class="section-head" style="margin-bottom:var(--sp-7)">
+        <span class="eyebrow eyebrow--on-dark">App-only</span>
+        <h2 id="app-deals" data-split>Offers that exist in the app and nowhere else</h2>
+        <p class="lead lead--on-dark">Flash rates, upgrade windows and last-minute tables.
+          They are not searchable on the web and they are not advertised. This is what
+          membership is actually for.</p>
+      </div>
+      <div class="tile-grid tile-grid--on-dark" data-app-deals data-reveal-stagger></div>
+    </div>
+  </section>
+
+  <section class="section" id="download" aria-labelledby="app-download">
+    <div class="shell">
+      <div class="prose-block" style="margin-inline:auto">
+        <span class="eyebrow">Download</span>
+        <h2 id="app-download" data-split>Free, and worth the space</h2>
+        <p class="lead" style="margin-top:var(--sp-4)">No subscription, no advertising, and we
+          do not sell your travel data. It works offline for your key and your reservation.</p>
+
+        <div class="download" data-app-download-cards style="margin-top:var(--sp-6)"></div>
+
+        <ul class="ticks" style="margin-top:var(--sp-6)">
+          <li>Membership number in your pocket the moment you join</li>
+          <li>Your folio itemised before departure, not after</li>
+          <li>Ask for an upgrade from the app, any time in the 48 hours before arrival</li>
+        </ul>
+
+        <p class="muted" style="margin-top:var(--sp-5);font-size:var(--step--2)">
+          Cannot install it on this device? <a href="tel:+639615625020">Call reservations</a>
+          and the same rates, points and offers apply.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-footer-mount></div>
+<div data-chat-mount></div>
+
+<script type="module" src="/assets/js/app.js"></script>
+</body>
+</html>

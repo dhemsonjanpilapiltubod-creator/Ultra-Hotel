@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find & Book — Ultra Hotel</title>
+<meta name="description" content="Search 112 hotels and resorts across 78 destinations. Filter by region, brand and amenity, then see your exact rate with taxes and deposit before you book. Book directly for the best rate, guaranteed.">
+<meta name="theme-color" content="#1A1A1A">
+<link rel="canonical" href="https://www.ultrahotel.com/book.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+<link rel="stylesheet" href="/assets/css/motion.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+</head>
+
+<body data-page="book" data-bookingbar="false" data-nav="solid">
+
+<div data-nav-mount></div>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="shell shell--wide">
+      <p class="eyebrow">Find &amp; Book</p>
+      <h1 class="pagehead__title" data-split>Where would you like to stay?</h1>
+      <p class="lead">112 hotels and resorts, 78 destinations, one rate. Every price below
+        is the direct rate, with taxes and the deposit shown before you commit to anything.</p>
+    </div>
+  </section>
+
+  <!-- the search panel: this page's own widget, not the compact hero bar -->
+  <div class="shell shell--wide" style="position:relative;z-index:2;margin-top:calc(var(--sp-8) * -1)">
+    <form class="searchpanel" data-book-form novalidate>
+      <div class="searchpanel__grid">
+        <div class="field">
+          <label class="field__label" for="sp-dest">Destination &amp; hotel</label>
+          <select class="select" id="sp-dest" name="property" data-sp-dest></select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="sp-in">Check in</label>
+          <input class="input" id="sp-in" name="checkIn" type="date" data-sp-in>
+          <p class="field__error" data-err-for="sp-in"></p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="sp-out">Check out</label>
+          <input class="input" id="sp-out" name="checkOut" type="date" data-sp-out>
+          <p class="field__error" data-err-for="sp-out"></p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="sp-rooms">Rooms</label>
+          <select class="select" id="sp-rooms" name="rooms" data-sp-rooms></select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="sp-adults">Adults</label>
+          <select class="select" id="sp-adults" name="adults" data-sp-adults></select>
+        </div>
+        <div class="field">
+          <label class="field__label" for="sp-children">Children</label>
+          <select class="select" id="sp-children" name="children" data-sp-children></select>
+        </div>
+      </div>
+
+      <div class="searchpanel__foot">
+        <label class="switch">
+          <input type="checkbox" name="corporate" data-sp-corporate>
+          <span class="switch__track" aria-hidden="true"><span class="switch__dot"></span></span>
+          <span class="switch__text">Corporate &amp; special rate</span>
+        </label>
+        <button class="btn btn--gold btn--lg" data-magnetic type="submit" data-sp-go>Search availability</button>
+      </div>
+
+      <p class="notice notice--bad" data-sp-alert hidden></p>
+    </form>
+  </div>
+
+  <!-- filters + results -->
+  <section class="section" style="padding-top:var(--sp-8)">
+    <div class="shell shell--wide">
+      <div class="results">
+
+        <aside class="results__filters" aria-label="Filter results">
+          <div class="filterpanel">
+            <div class="filterpanel__head">
+              <h2 class="filterpanel__title" data-split>Refine</h2>
+              <button class="link link--sm" type="button" data-sp-reset>Reset</button>
+            </div>
+
+            <fieldset class="filtergroup">
+              <legend class="filtergroup__legend">Region</legend>
+              <ul class="chip-filters" data-sp-regions role="group" aria-label="Filter by region"></ul>
+            </fieldset>
+
+            <fieldset class="filtergroup">
+              <legend class="filtergroup__legend">Brand</legend>
+              <ul class="chip-filters" data-sp-brands role="group" aria-label="Filter by brand"></ul>
+            </fieldset>
+
+            <fieldset class="filtergroup">
+              <legend class="filtergroup__legend">Amenity</legend>
+              <ul class="chip-filters" data-sp-tags role="group" aria-label="Filter by amenity"></ul>
+            </fieldset>
+
+            <fieldset class="filtergroup">
+              <legend class="filtergroup__legend">Sort by</legend>
+              <select class="select" data-sp-sort aria-label="Sort results">
+                <option value="recommended">Recommended</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="name">Name: A to Z</option>
+              </select>
+            </fieldset>
+          </div>
+        </aside>
+
+        <div class="results__main">
+          <div class="results__head">
+            <p class="results__count" data-sp-count role="status">Loading availability…</p>
+            <div class="results__legend">
+              <span class="chip chip--gold">Direct rate</span>
+              <span class="chip">Free cancellation up to 24h</span>
+            </div>
+          </div>
+
+          <div class="grid grid--cards" data-sp-results></div>
+
+          <p class="empty" data-sp-empty hidden>
+            No property matches those filters. Try widening the region, or
+            <button class="link" type="button" data-sp-reset-2>reset the filters</button>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- rooms + live quote, shown once a property is chosen -->
+  <section class="section section--sand" id="quote" data-sp-quote-section hidden>
+    <div class="shell shell--wide">
+      <div class="split split--wide">
+        <div>
+          <p class="eyebrow">Your stay</p>
+          <h2 data-sp-quote-title>Choose a room</h2>
+          <p class="section-head__sub" data-sp-quote-sub></p>
+
+          <div class="grid grid--rooms" data-sp-rooms-list></div>
+        </div>
+
+        <aside class="quotecard" aria-label="Price summary" aria-live="polite">
+          <h3 class="quotecard__title">Price summary</h3>
+          <div data-sp-quote></div>
+
+          <form class="quotecard__form" data-form="booking" data-success="Your stay is confirmed. A summary is on its way by email."
+                data-endpoint="/api/bookings" novalidate>
+            <input type="hidden" name="property" data-qp-property>
+            <input type="hidden" name="room" data-qp-room>
+            <input type="hidden" name="checkIn" data-qp-in>
+            <input type="hidden" name="checkOut" data-qp-out>
+            <input type="hidden" name="adults" data-qp-adults>
+            <input type="hidden" name="children" data-qp-children>
+            <input type="hidden" name="rooms" data-qp-rooms>
+            <input type="hidden" name="promo" data-qp-promo>
+
+            <div class="field">
+              <label class="field__label" for="qp-name">Full name</label>
+              <input class="input" id="qp-name" name="fullName" type="text" autocomplete="name"
+                     data-rules="required minlen:2" required>
+              <p class="field__error"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="qp-email">Email</label>
+              <input class="input" id="qp-email" name="email" type="email" autocomplete="email"
+                     data-rules="required email" required>
+              <p class="field__error"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="qp-phone">Phone</label>
+              <input class="input" id="qp-phone" name="phone" type="tel" autocomplete="tel" data-rules="tel">
+              <p class="field__error"></p>
+            </div>
+
+            <p class="notice" data-form-notice hidden></p>
+
+            <button class="btn btn--gold btn--lg btn--block" type="submit" data-qp-submit disabled>
+              Reserve this stay
+            </button>
+            <p class="muted" style="margin-top:var(--sp-3);font-size:var(--step--2)">
+              No card is charged now. You pay the deposit on arrival, and the
+              balance at the property.
+            </p>
+          </form>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="book-guarantee">
+    <div class="shell">
+      <div class="loyalty">
+        <div class="loyalty__copy reveal">
+          <h2 id="book-guarantee" data-split>The best rate, guaranteed</h2>
+          <p class="lead">The price you see here is the price you pay. If you find a lower
+            public rate for the same room, dates and cancellation terms within 24 hours of
+            booking, we match it and add 10% Ultra Points to your stay.</p>
+          <ul class="benefits" data-book-benefits data-reveal-stagger></ul>
+          <p style="margin-top:var(--sp-6)">
+            <a class="btn btn--gold" href="ultra-circle.html#join">Join Ultra Circle free</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-footer-mount></div>
+<div data-chat-mount></div>
+
+<script type="module" src="/assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+/* ==========================================================================
+   Ultra Hotel Group — design tokens
+
+   The palette is fixed by brand and must not drift. The nine approved hex
+   codes below are the only literal colours in the system; every other tone
+   is a color-mix() of two of them, so nothing off-brand can be introduced.
+   If a shade you want is not here, it does not exist yet.
+
+     Deep Charcoal  #1A1A1A   text, headers, navigation
+     Warm Ivory     #F8F5F0   primary background
+     Soft Gold      #C9A96E   accents, buttons, highlights, underlines
+     Muted Taupe    #A89F91   secondary text, borders, subtle icons
+     Champagne      #E8D9B5   hover states, light accents
+     Soft Black     #0F0F0F   footer, dark sections
+     Pure White     #FFFFFF   cards, modals, form backgrounds
+     Light Sand     #F2EDE6   alternate section backgrounds
+     Warm Grey      #6B6560   body text, captions
+
+   Variables are named by job rather than by colour so a surface can move
+   again without touching a single component.
+   ========================================================================== */
+
+:root {
+  /* --- approved palette -------------------------------------------------- */
+  --deep-charcoal: #1a1a1a;
+  --warm-ivory: #f8f5f0;
+  --soft-gold: #c9a96e;
+  --muted-taupe: #a89f91;
+  --champagne: #e8d9b5;
+  --soft-black: #0f0f0f;
+  --pure-white: #ffffff;
+  --light-sand: #f2ede6;
+  --warm-grey: #6b6560;
+
+  /* --- charcoals: the dark ladder ---------------------------------------
+     Every step below is a mix of two approved colours, so the ladder stays
+     on-brand and no new hex code can ever enter the system. */
+  --charcoal: var(--deep-charcoal);
+  --charcoal-900: var(--soft-black);
+  --charcoal-800: color-mix(in srgb, var(--soft-black) 55%, var(--deep-charcoal));
+  --charcoal-700: var(--deep-charcoal);
+  --charcoal-600: color-mix(in srgb, var(--white) 14%, var(--deep-charcoal));
+  --charcoal-500: color-mix(in srgb, var(--white) 28%, var(--deep-charcoal));
+  --charcoal-400: var(--warm-grey);
+  --charcoal-300: color-mix(in srgb, var(--muted-taupe) 60%, var(--warm-grey));
+  --charcoal-200: color-mix(in srgb, var(--muted-taupe) 32%, var(--white));
+  --charcoal-100: color-mix(in srgb, var(--muted-taupe) 18%, var(--white));
+  --charcoal-50: color-mix(in srgb, var(--muted-taupe) 9%, var(--white));
+
+  /* --- ivories: the warm paper ladder ----------------------------------- */
+  --ivory: var(--warm-ivory);
+  --ivory-200: var(--champagne);
+  --ivory-100: var(--light-sand);
+
+  /* --- golds: the single accent ----------------------------------------- */
+  --gold: var(--soft-gold);
+  --gold-600: #b8945a;          /* primary button hover, fixed by brand */
+  --gold-500: color-mix(in srgb, var(--soft-gold) 55%, var(--champagne));
+  --gold-300: var(--champagne);
+  --gold-100: color-mix(in srgb, var(--soft-gold) 22%, var(--white));
+  --gold-50: color-mix(in srgb, var(--soft-gold) 12%, var(--white));
+
+  /* --- neutrals ---------------------------------------------------------- */
+  --white: var(--pure-white);
+  --taupe: var(--muted-taupe);
+  --sand: var(--light-sand);
+  --ink: var(--deep-charcoal);
+  --ink-70: color-mix(in srgb, var(--deep-charcoal) 78%, var(--warm-ivory));
+  --ink-55: var(--warm-grey);
+  --ink-35: var(--muted-taupe);
+
+  --line: rgba(26, 26, 26, 0.14);
+  --line-strong: rgba(26, 26, 26, 0.26);
+  --line-soft: rgba(26, 26, 26, 0.08);
+  --line-taupe: rgba(168, 159, 145, 0.55);
+  --line-invert: rgba(248, 245, 240, 0.22);
+  --line-invert-soft: rgba(248, 245, 240, 0.12);
+
+  /* --- semantic surfaces ------------------------------------------------- */
+  --bg: var(--pure-white);
+  --bg-soft: var(--warm-ivory);
+  --bg-sand: var(--light-sand);
+  --bg-cool: color-mix(in srgb, var(--warm-ivory) 55%, var(--white));
+  --bg-dark: var(--deep-charcoal);
+  --bg-darker: var(--soft-black);
+
+  --text: var(--deep-charcoal);
+  --text-soft: var(--ink-70);
+  --text-mute: var(--warm-grey);
+  --text-caption: var(--warm-grey);
+  --text-invert: var(--warm-ivory);
+  --text-invert-soft: rgba(248, 245, 240, 0.8);
+  --text-invert-mute: rgba(248, 245, 240, 0.64);
+  --text-accent: var(--deep-charcoal);
+
+  --focus: var(--soft-gold);
+
+  /* The nav and every dark band sit on deep charcoal. Buttons inside a dark
+     band need a lighter surface or they vanish into it. */
+  --charcoal-lift: color-mix(in srgb, var(--white) 10%, var(--deep-charcoal));
+
+  /* --- buttons (fixed by brand) ------------------------------------------ */
+  --btn-primary-bg: var(--soft-gold);
+  --btn-primary-bg-hover: #b8945a;
+  --btn-primary-fg: var(--deep-charcoal);
+  --btn-outline-bd: var(--soft-gold);
+  --btn-outline-fg: var(--deep-charcoal);
+
+  /* --- type -------------------------------------------------------------- */
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-body: "Inter", "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* fluid scale — 320px → 1440px viewport */
+  --step--2: clamp(0.72rem, 0.70rem + 0.10vw, 0.78rem);
+  --step--1: clamp(0.84rem, 0.81rem + 0.14vw, 0.92rem);
+  --step-0: clamp(0.98rem, 0.95rem + 0.18vw, 1.08rem);
+  --step-1: clamp(1.15rem, 1.09rem + 0.30vw, 1.33rem);
+  --step-2: clamp(1.37rem, 1.25rem + 0.58vw, 1.72rem);
+  --step-3: clamp(1.62rem, 1.40rem + 1.05vw, 2.25rem);
+  --step-4: clamp(1.93rem, 1.55rem + 1.90vw, 3.00rem);
+  --step-5: clamp(2.30rem, 1.70rem + 2.95vw, 4.00rem);
+  --step-6: clamp(2.74rem, 1.78rem + 4.80vw, 5.50rem);
+
+  --tracking-eyebrow: 0.18em;
+  --tracking-logo: 0.32em;
+
+  /* --- space ------------------------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 2.75rem;
+  --sp-8: 3.5rem;
+  --sp-9: 5rem;
+  --sp-10: 7rem;
+  --section-y: clamp(3.5rem, 2rem + 6vw, 7.5rem);
+  --gutter: clamp(1.15rem, 0.6rem + 2.6vw, 3.25rem);
+  --measure: 68ch;
+  --shell: 1280px;
+  --shell-wide: 1520px;
+
+  /* --- surfaces ---------------------------------------------------------- */
+  --radius-sm: 3px;
+  --radius: 5px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(26, 26, 26, 0.05);
+  --shadow-sm: 0 2px 10px rgba(26, 26, 26, 0.07);
+  --shadow-md: 0 10px 30px -12px rgba(26, 26, 26, 0.20);
+  --shadow-lg: 0 26px 60px -24px rgba(26, 26, 26, 0.34);
+  --shadow-nav: 0 1px 0 rgba(26, 26, 26, 0.07), 0 8px 26px -18px rgba(26, 26, 26, 0.35);
+  --shadow-focus: 0 0 0 3px rgba(201, 169, 110, 0.5);
+
+  /* --- motion ----------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --dur-fast: 160ms;
+  --dur: 280ms;
+  --dur-slow: 560ms;
+  --dur-reveal: 900ms;
+  --stagger: 90ms;
+
+  /* --- layout ----------------------------------------------------------- */
+  --nav-h: 84px;
+  --nav-h-compact: 66px;
+  --booking-h: 96px;
+}
+
+/* Honour the OS setting globally: collapse durations, kill transforms. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur: 1ms;
+    --dur-slow: 1ms;
+    --dur-reveal: 1ms;
+    --stagger: 0ms;
+  }
+}

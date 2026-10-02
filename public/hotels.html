@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotels &amp; Resorts — Ultra Hotel</title>
+<meta name="description" content="112 hotels and resorts in 78 destinations across Ultra Hotel, Ultra Resorts, Aether by Ultra and Pulse by Ultra. Search by destination, brand or what you want from the room.">
+<meta name="theme-color" content="#1A1A1A">
+<link rel="canonical" href="https://www.ultrahotel.com/hotels.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+<link rel="stylesheet" href="/assets/css/motion.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+</head>
+
+<body data-page="hotels" data-bookingbar="true" data-nav="solid">
+
+<div data-nav-mount></div>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="shell shell--wide">
+      <p class="eyebrow">Hotels &amp; Resorts</p>
+      <h1 class="pagehead__title" data-split>112 properties, and a shortlist that fits</h1>
+      <p class="lead">Filter by destination, by brand, or by what you actually want out of the
+        room. Everything here is bookable direct at the best rate, guaranteed.</p>
+    </div>
+  </section>
+
+  <section class="section" id="destinations" aria-labelledby="hotels-regions">
+    <div class="shell shell--wide">
+      <div class="section-head" style="margin-bottom:var(--sp-6)">
+        <span class="eyebrow">Destinations</span>
+        <h2 id="hotels-regions" data-split>Start with where</h2>
+      </div>
+      <div class="region-grid" data-hotels-regions data-reveal-stagger></div>
+    </div>
+  </section>
+
+  <section class="section section--sand" aria-labelledby="hotels-all">
+    <div class="shell shell--wide">
+      <div class="section-head" style="margin-bottom:var(--sp-6)">
+        <span class="eyebrow">Every property</span>
+        <h2 id="hotels-all" data-split>The collection</h2>
+        <p class="lead">Rates shown are the best direct rate for the current search, not a
+          headline figure from a cached page.</p>
+      </div>
+
+      <form class="searchpanel" data-hotels-search novalidate>
+        <div class="searchpanel__grid" style="grid-template-columns:2fr 1fr 1fr 1fr">
+          <div class="field">
+            <label class="field__label" for="hs-q">Property, city or country</label>
+            <input class="input" id="hs-q" name="q" type="search" placeholder="Kyoto, Mactan, Aether…" data-hs-q>
+          </div>
+          <div class="field">
+            <label class="field__label" for="hs-region">Region</label>
+            <select class="select" id="hs-region" data-hs-region></select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="hs-brand">Brand</label>
+            <select class="select" id="hs-brand" data-hs-brand></select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="hs-sort">Sort</label>
+            <select class="select" id="hs-sort" data-hs-sort>
+              <option value="recommended">Recommended</option>
+              <option value="price-asc">Price, low to high</option>
+              <option value="price-desc">Price, high to low</option>
+              <option value="rooms">Most rooms</option>
+              <option value="name">Name</option>
+            </select>
+          </div>
+        </div>
+
+        <fieldset class="chipset" data-hs-tags>
+          <legend class="sr-only">Filter by what the property has</legend>
+        </fieldset>
+
+        <p class="results__count" style="margin-top:var(--sp-4)" data-hs-count role="status"></p>
+      </form>
+
+      <div class="grid grid--cards" style="margin-top:var(--sp-6)" data-hotels-results></div>
+
+      <p class="empty" data-hs-empty hidden>
+        Nothing matches that combination. <button class="link link--btn" type="button" data-hs-reset>Clear the filters</button>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--dark feature" aria-labelledby="hotels-cta">
+    <div class="feature__media" data-parallax-host>
+      <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1800&q=72"
+           alt="An Ultra resort pool at first light" loading="lazy" decoding="async">
+    </div>
+    <div class="feature__veil" aria-hidden="true"></div>
+    <div class="shell feature__inner">
+      <div class="shell--narrow" style="padding:0">
+        <span class="eyebrow eyebrow--on-dark">Best rate, guaranteed</span>
+        <h2 id="hotels-cta" data-split>If you find it cheaper, we match it and add 10% in points</h2>
+        <p class="lead lead--on-dark">Book direct and if a lower public rate appears for the
+          same room, dates and terms within 24 hours, we match it and add 10% Ultra Points
+          to your stay.</p>
+        <p class="ctaband__actions">
+          <a class="btn btn--gold btn--lg" data-magnetic href="book.html">Find a room</a>
+          <a class="btn btn--outline-light btn--lg" href="ultra-circle.html#join">Join Ultra Circle</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-footer-mount></div>
+<div data-chat-mount></div>
+
+<script type="module" src="/assets/js/app.js"></script>
+</body>
+</html>

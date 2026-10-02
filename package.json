@@ -1,0 +1,17 @@
+{
+  "name": "ultra-hotel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ultra Hotel — 5-star family-friendly beachfront resort. Static front end + zero-dependency booking and enquiry back end.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server/index.mjs",
+    "dev": "node --watch server/index.mjs",
+    "reset": "node tools/reset-db.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {}
+}

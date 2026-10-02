@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Restaurants &amp; Bars — Ultra Hotel</title>
+<meta name="description" content="540 restaurants and bars across the Ultra Hotel group. Search by city, cuisine or hotel, and Ultra Circle members take 25% off at participating restaurants.">
+<meta name="theme-color" content="#1A1A1A">
+<link rel="canonical" href="https://www.ultrahotel.com/dining.html">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+<link rel="stylesheet" href="/assets/css/motion.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+</head>
+
+<body data-page="dining" data-bookingbar="false" data-nav="solid">
+
+<div data-nav-mount></div>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="shell shell--wide">
+      <p class="eyebrow">Restaurants &amp; Bars</p>
+      <h1 class="pagehead__title" data-split>Five hundred and forty places to eat</h1>
+      <p class="lead">540 restaurants and bars across the group, from a forty-two seat counter
+        in Bangkok to a ballroom kitchen in Doha. Ultra Circle members take 25% off the
+        tasting menu at participating restaurants.</p>
+    </div>
+  </section>
+
+  <section class="section" id="rewards" aria-labelledby="dining-rewards">
+    <div class="shell shell--wide">
+      <div class="section-head" style="margin-bottom:var(--sp-6)">
+        <span class="eyebrow">Ultra Circle</span>
+        <h2 id="dining-rewards" data-split>25% off the buffet, and points on the rest</h2>
+        <p class="lead">The member dining offer applies to buffet and table service at
+          participating restaurants. Points accrue on what you spend at any rate, member or not.</p>
+      </div>
+      <ul class="benefits" data-dining-benefits data-reveal-stagger></ul>
+    </div>
+  </section>
+
+  <section class="section section--sand" aria-labelledby="dining-all">
+    <div class="shell shell--wide">
+      <div class="rail-head">
+        <div class="section-head">
+          <span class="eyebrow">Find a table</span>
+          <h2 id="dining-all" data-split>Across the group</h2>
+          <p class="section-head__sub">Savour the world of Ultra</p>
+        </div>
+        <div class="rail__nav" role="group" aria-label="Scroll restaurants">
+          <button class="rail__btn" type="button" data-rail-prev aria-label="Previous restaurants">
+            <svg viewBox="0 0 16 12" aria-hidden="true"><path d="M15 6H2M7 1.5 2 6l5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+          <button class="rail__btn" type="button" data-rail-next aria-label="More restaurants">
+            <svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 6h13M9 1.5 14 6l-5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="rail" data-rail>
+        <div class="rail__track" data-dining-rail data-reveal-stagger aria-label="Restaurants and bars"></div>
+        <div class="rail__bar" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="dining-search">
+    <div class="shell shell--wide">
+      <div class="section-head" style="margin-bottom:var(--sp-6)">
+        <span class="eyebrow">Search</span>
+        <h2 id="dining-search" data-split>Every restaurant, filterable</h2>
+      </div>
+
+      <form class="searchpanel" data-dining-search novalidate>
+        <div class="searchpanel__grid" style="grid-template-columns:2fr 1fr 1fr 1fr">
+          <div class="field">
+            <label class="field__label" for="ds-q">Name, hotel or city</label>
+            <input class="input" id="ds-q" name="q" type="search" placeholder="Salt Cellar, Bangkok, Kaiseki…" data-ds-q>
+          </div>
+          <div class="field">
+            <label class="field__label" for="ds-group">Type</label>
+            <select class="select" id="ds-group" data-ds-group></select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="ds-res">Reservations</label>
+            <select class="select" id="ds-res" data-ds-res>
+              <option value="">Any</option>
+              <option value="yes">Takes bookings</option>
+              <option value="no">Walk-in only</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="ds-sort">Sort</label>
+            <select class="select" id="ds-sort" data-ds-sort>
+              <option value="name">Name</option>
+              <option value="property">Hotel</option>
+              <option value="seats">Capacity</option>
+            </select>
+          </div>
+        </div>
+        <p class="results__count" style="margin-top:var(--sp-4)" data-ds-count role="status"></p>
+      </form>
+
+      <div class="grid grid--cards" style="margin-top:var(--sp-6)" data-dining-results></div>
+    </div>
+  </section>
+
+  <section class="section" id="reserve" aria-labelledby="dining-reserve">
+    <div class="shell">
+      <div class="loyalty">
+        <div class="loyalty__copy reveal">
+          <p class="eyebrow">Table requests</p>
+          <h2 id="dining-reserve" data-split>Ask for a table</h2>
+          <p class="lead">Every restaurant that takes bookings is in the list. Send the date
+            and the party size, and the venue confirms by email — usually the same day.</p>
+          <ul class="ticks" style="margin-top:var(--sp-5)">
+            <li>Held for fifteen minutes past the requested time, no charge</li>
+            <li>Ultra Circle members get the venue's listed offer applied automatically</li>
+            <li>Large parties over eight are routed to the events team instead</li>
+          </ul>
+          <p class="muted" style="margin-top:var(--sp-5);font-size:var(--step--2)">
+            Or email <a href="mailto:Dhemsonjanpilapiltubod@gmail.com">Dhemsonjanpilapiltubod@gmail.com</a>
+          </p>
+        </div>
+
+        <form class="form-card" data-form="reservation" data-endpoint="/api/dining-reservations"
+              data-success="Thank you — the venue has your request and will confirm by email."
+              novalidate>
+          <h3 class="form-card__title">Request a table</h3>
+          <p class="form-card__sub">Nothing is charged now. The restaurant confirms the time.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label class="field__label" for="dr-name">Your name</label>
+              <input class="input" id="dr-name" name="name" type="text" autocomplete="name"
+                     data-rules="required minlen:2" required>
+              <p class="field__error"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="dr-email">Email</label>
+              <input class="input" id="dr-email" name="email" type="email" autocomplete="email"
+                     data-rules="required email" required>
+              <p class="field__error"></p>
+            </div>
+            <div class="field field--wide">
+              <label class="field__label" for="dr-venue">Restaurant</label>
+              <select class="select" id="dr-venue" name="venue" data-dr-venues required></select>
+              <p class="field__error"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="dr-date">Date</label>
+              <input class="input" id="dr-date" name="date" type="date" data-dr-date required>
+              <p class="field__error"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="dr-time">Preferred time</label>
+              <select class="select" id="dr-time" name="time" data-dr-times></select>
+            </div>
+            <div class="field">
+              <label class="field__label" for="dr-party">Party size</label>
+              <input class="input" id="dr-party" name="party" type="number" min="1" max="8"
+                     step="1" value="2" data-rules="required number" required>
+              <p class="field__error"></p>
+            </div>
+            <div class="field field--wide">
+              <label class="field__label" for="dr-notes">Anything we should know</label>
+              <textarea class="textarea" id="dr-notes" name="notes" rows="3"
+                        placeholder="Allergies, a birthday, a quiet corner, a wheelchair table…"></textarea>
+              <p class="field__error"></p>
+            </div>
+          </div>
+
+          <p class="notice" data-form-notice hidden></p>
+
+          <button class="btn btn--gold btn--lg btn--block" type="submit">Request the table</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark feature" aria-labelledby="dining-cta">
+    <div class="feature__media" data-parallax-host>
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=72"
+           alt="A restaurant table laid for dinner" loading="lazy" decoding="async">
+    </div>
+    <div class="feature__veil" aria-hidden="true"></div>
+    <div class="shell feature__inner">
+      <div class="shell--narrow" style="padding:0">
+        <span class="eyebrow eyebrow--on-dark">Reservations</span>
+        <h2 id="dining-cta" data-split>Book the table, not just the room</h2>
+        <p class="lead lead--on-dark">A dinner reservation at any Ultra restaurant can be
+          added to a stay in the same basket, or made on its own if you are already with us.</p>
+        <p class="ctaband__actions">
+          <a class="btn btn--gold btn--lg" data-magnetic href="#reserve">Request a table</a>
+          <a class="btn btn--outline-light btn--lg" href="ultra-circle.html#join">Join for 25% off</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-footer-mount></div>
+<div data-chat-mount></div>
+
+<script type="module" src="/assets/js/app.js"></script>
+</body>
+</html>

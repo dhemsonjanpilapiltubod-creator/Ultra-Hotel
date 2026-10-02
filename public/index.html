@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ultra Hotel — Your Ultra Escape Starts Here</title>
+<meta name="description" content="112 hotels and resorts across four brands in 78 destinations. Book directly for the best rate, guaranteed, and earn Ultra Points on every stay.">
+<meta name="theme-color" content="#1A1A1A">
+<link rel="canonical" href="https://www.ultrahotel.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ultra Hotel — Your Ultra Escape Starts Here">
+<meta property="og:description" content="112 hotels and resorts across four brands in 78 destinations. Book directly for the best rate, guaranteed, and earn Ultra Points on every stay.">
+<meta property="og:url" content="https://www.ultrahotel.com/">
+<meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=75">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/components.css">
+<link rel="stylesheet" href="/assets/css/pages.css">
+<link rel="stylesheet" href="/assets/css/motion.css">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+</head>
+
+<body data-page="home" data-bookingbar="true">
+
+<div data-nav-mount></div>
+
+<main id="main">
+
+  <!-- 1 · HERO + BOOKING WIDGET ········································ -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__media" data-parallax-host>
+      <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=2000&q=72"
+           alt="A cliffside terrace at Ultra Santorini Caldera at first light, the sea beyond"
+           fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero__veil" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <div class="shell shell--wide">
+        <p class="eyebrow hero__eyebrow" data-hero-anim="60">112 hotels &amp; resorts · 78 destinations</p>
+        <h1 class="hero__title" id="hero-title" data-hero-anim="140" data-split>
+          Your Ultra Escape <em>Starts Here</em>
+        </h1>
+        <p class="hero__sub" data-hero-anim="260">
+          Book directly for the best rate, guaranteed. Only via www.ultrahotel.com
+        </p>
+      </div>
+    </div>
+
+    <a class="hero__scroll" href="#circle" aria-label="Scroll to content">
+      <span>Scroll</span>
+      <span class="hero__scroll-line" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <!-- the booking widget sits in the lower part of the hero -->
+  <div class="hero-booking" data-bookingbar-mount></div>
+
+  <!-- 2 · LOYALTY BANNER ············································· -->
+  <section class="section section--sand" data-spy="ultra-circle.html" id="circle" aria-labelledby="circle-title">
+    <div class="shell">
+      <div class="loyalty">
+        <div class="loyalty__copy reveal">
+          <h2 id="circle-title" data-split>Join Ultra Circle today</h2>
+          <p class="lead">Whether you’re here for a bite or a string of nights, join as a
+            member to enjoy exclusive benefits and a seamless digital experience.</p>
+          <p style="margin-top:var(--sp-6)">
+            <a class="btn btn--gold btn--lg" data-magnetic href="ultra-circle.html#join">Join Now</a>
+          </p>
+          <p class="muted" style="margin-top:var(--sp-4);font-size:var(--step--2)">
+            Free to join · Silver is automatic · Gold from 10 nights a year
+          </p>
+        </div>
+
+        <ul class="benefits" data-loyalty-benefits data-reveal-stagger aria-label="Ultra Circle member benefits"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · OUR BRANDS ················································· -->
+  <section class="section" data-spy="brands.html" id="brands" aria-labelledby="brands-title">
+    <div class="shell shell--wide">
+      <div class="section-head" style="margin-bottom:var(--sp-8)">
+        <span class="eyebrow eyebrow-rule">The collection</span>
+        <h2 id="brands-title" data-split>Our Brands</h2>
+        <p class="lead">Take your pick. Choose from 112 hotels and resorts across
+          our four distinct brands — in 78 destinations.</p>
+      </div>
+
+      <div class="brand-grid" data-brands></div>
+    </div>
+  </section>
+
+  <!-- 4 · RESTAURANTS & BARS ········································· -->
+  <section class="section section--sand" data-spy="dining.html" id="dining" aria-labelledby="dining-title">
+    <div class="shell shell--wide">
+      <div class="rail-head">
+        <div class="section-head">
+          <span class="eyebrow eyebrow-rule">Dining</span>
+          <h2 id="dining-title" data-split>Restaurants &amp; Bars</h2>
+          <p class="section-head__sub">Savour the world of Ultra</p>
+          <p class="lead">Find flavourful inspirations and sweet rewards at 540
+            restaurants &amp; bars worldwide.</p>
+        </div>
+        <div class="rail__nav" role="group" aria-label="Scroll restaurants">
+          <button class="rail__btn" type="button" data-rail-prev aria-label="Previous restaurants">
+            <svg viewBox="0 0 16 12" aria-hidden="true"><path d="M15 6H2M7 1.5 2 6l5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+          <button class="rail__btn" type="button" data-rail-next aria-label="More restaurants">
+            <svg viewBox="0 0 16 12" aria-hidden="true"><path d="M1 6h13M9 1.5 14 6l-5 4.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="rail" data-rail>
+        <div class="rail__track" data-dining-row data-reveal-stagger aria-label="Restaurant and bar highlights"></div>
+        <div class="rail__bar" aria-hidden="true"><span></span></div>
+      </div>
+
+      <p class="muted" style="margin-top:var(--sp-5);max-width:34rem">
+        Members enjoy 25% off the tasting menu at participating restaurants worldwide.
+        <span data-promise></span>
+      </p>
+
+      <p style="margin-top:var(--sp-6)">
+        <a class="btn btn--gold" href="dining.html">Learn More</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- 5 · BUSINESS TRAVEL ············································ -->
+  <section class="section" data-spy="business.html" id="business" aria-labelledby="business-title">
+    <div class="shell shell--wide">
+      <div class="split split--wide">
+        <div class="reveal">
+          <span class="eyebrow eyebrow-rule">Corporate</span>
+          <h2 id="business-title" data-split>Business Travel</h2>
+          <p class="section-head__sub">Ultra Business Travel Programme</p>
+          <div class="prose" style="margin-top:var(--sp-5)">
+            <p>Register once and every Ultra Hotel, Aether and Pulse property opens to you
+              at a discounted, fully flexible rate — cancellable up to 24 hours before you
+              arrive. You keep earning Ultra Points on the whole folio, not just the room,
+              and your company receives one consolidated monthly invoice with your purchase
+              order referenced line by line.</p>
+            <p>From the first night you stay, milestone rewards begin to land: your tenth,
+              twentieth and fiftieth night in a rolling twelve months each earn a reward of
+              your choosing.</p>
+          </div>
+          <p class="muted" style="margin-top:var(--sp-5);max-width:34rem"><span data-promise></span></p>
+          <p style="margin-top:var(--sp-6)">
+            <a class="btn btn--gold" href="business.html">Learn More</a>
+          </p>
+        </div>
+
+        <ul class="facts" data-business-benefits data-reveal-stagger aria-label="Business travel benefits"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · MEETINGS & EVENTS ·········································· -->
+  <section class="section section--dark feature" data-spy="events.html" id="events" aria-labelledby="events-title">
+    <div class="feature__media" data-parallax-host>
+      <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1800&q=72"
+           alt="A banquet hall set for a conference, lit in warm gold" loading="lazy" decoding="async">
+    </div>
+    <div class="feature__veil" aria-hidden="true"></div>
+    <div class="shell feature__inner">
+      <div class="shell--narrow" style="padding:0">
+        <span class="eyebrow eyebrow-rule eyebrow--on-dark">Gather</span>
+        <h2 id="events-title" data-split>Meetings &amp; Events</h2>
+        <p class="lead lead--on-dark">From stunning locations to enterprising facilities, with
+          our four distinct brands you will find the perfect venue to match your unique event.</p>
+        <p style="margin-top:var(--sp-6)">
+          <a class="btn btn--gold btn--lg" data-magnetic href="events.html">Learn More</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · WEDDINGS & CELEBRATIONS ···································· -->
+  <section class="section" data-spy="weddings.html" id="weddings" aria-labelledby="weddings-title">
+    <div class="shell shell--wide">
+      <div class="split split--wide split--flip">
+        <div class="reveal">
+          <span class="eyebrow eyebrow-rule">Celebrate</span>
+          <h2 id="weddings-title" data-split>Weddings &amp; Celebrations</h2>
+          <div class="prose" style="margin-top:var(--sp-5)">
+            <p>A wedding is more than details, venues and visions, it is about moments. At
+              Ultra we enable amazing experiences so you can focus on what really matters.</p>
+            <p>From a garden ceremony in Kyoto to six hundred guests on the beach lawn at
+              Mactan, every one of them is looked after by a dedicated coordinator who has
+              done it before.</p>
+          </div>
+          <p class="muted" style="margin-top:var(--sp-5);max-width:34rem"><span data-promise></span></p>
+          <p style="margin-top:var(--sp-6)">
+            <a class="btn btn--gold" href="weddings.html">Learn More</a>
+          </p>
+        </div>
+
+        <div class="feature__media feature__media--inset reveal" data-parallax-host>
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=74"
+               alt="A garden ceremony set for a wedding at dusk" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · ULTRA CIRCLE MOBILE APP ····································· -->
+  <section class="section section--sand" id="app" aria-labelledby="app-title">
+    <div class="shell shell--wide">
+      <div class="split split--wide split--flip split--center">
+        <div class="reveal">
+          <span class="eyebrow eyebrow-rule">In your pocket</span>
+          <h2 id="app-title" data-split>Ultra Circle Mobile App</h2>
+          <p class="lead" style="margin-top:var(--sp-4)">Access exclusive member rates and the
+            best deals, right here on the app.</p>
+
+          <ul class="facts facts--tight" data-app-features data-reveal-stagger aria-label="App features"></ul>
+
+          <div class="cluster" style="margin-top:var(--sp-6)">
+            <a class="btn btn--gold" href="app.html">Learn More</a>
+            <a class="storebadge" href="app.html#download" aria-label="Download on the App Store">
+              <span class="storebadge__mark" aria-hidden="true">●</span>
+              <span><small>Download on the</small><b>App Store</b></span>
+            </a>
+            <a class="storebadge" href="app.html#download" aria-label="Get it on Google Play">
+              <span class="storebadge__mark" aria-hidden="true">▶</span>
+              <span><small>Get it on</small><b>Google Play</b></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="app-shot reveal">
+          <div class="app-shot__phone" data-app-phone></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div data-footer-mount></div>
+<div data-chat-mount></div>
+
+<script type="module" src="/assets/js/app.js"></script>
+</body>
+</html>
